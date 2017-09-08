@@ -29,12 +29,20 @@ public class Counter {
 
     }
 
-    public int incrementValue(){
-        return currentValue + 1;
+    public void incrementValue(){
+        currentValue--;
     }
 
-    public int decrementValue(){
-        return currentValue +1;
+    public void decrementValue(){
+        currentValue++;
+    }
+
+    public void setCurrentValue(int newValue){
+        currentValue = newValue;
+    }
+
+    public void resetCurrentValue(){
+        currentValue = initialValue;
     }
 
     public int getCurrentValue(){
