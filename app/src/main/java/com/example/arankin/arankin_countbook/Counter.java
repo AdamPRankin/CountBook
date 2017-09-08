@@ -22,7 +22,7 @@ public class Counter {
 
     public Counter(int initalValue,String counterName, String comment){
         this.initialValue = initialValue;
-        this.initialValue = currentValue;
+        this.currentValue = initialValue;
         this.counterName = counterName;
         this.comment = comment;
         this.lastModifyDate = lastModifyDate;
@@ -51,6 +51,14 @@ public class Counter {
 
     public Date getLastModifyDate(){
         return lastModifyDate;
+    }
+
+    public void setCounterName(String newName){
+        counterName = newName;
+    }
+
+    public void setComment(String newComment){
+        comment = newComment;
     }
 
 
