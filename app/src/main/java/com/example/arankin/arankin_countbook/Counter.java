@@ -1,6 +1,7 @@
 package com.example.arankin.arankin_countbook;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Date;
 public class Counter {
     public int initialValue;
     public int currentValue;
-    public Date lastModifyDate;
+    public LocalDate lastModifyDate;
     public String counterName;
     public String comment;
 
@@ -18,14 +19,15 @@ public class Counter {
         this.initialValue = initalValue;
         this.currentValue = initalValue;
         this.counterName = counterName;
+        this.lastModifyDate = LocalDate.now(ZoneId.of("Canada/Mountain"));
     }
 
-    public Counter(int initalValue,String counterName, String comment){
-        this.initialValue = initialValue;
-        this.currentValue = initialValue;
+    public Counter(int value,String counterName, String comment){
+        this.initialValue = value;
+        this.currentValue = value;
         this.counterName = counterName;
         this.comment = comment;
-        this.lastModifyDate = lastModifyDate;
+        this.lastModifyDate = LocalDate.now(ZoneId.of("Canada/Mountain"));
 
     }
 
@@ -49,7 +51,7 @@ public class Counter {
         return currentValue;
     }
 
-    public Date getLastModifyDate(){
+    public LocalDate getLastModifyDate(){
         return lastModifyDate;
     }
 
