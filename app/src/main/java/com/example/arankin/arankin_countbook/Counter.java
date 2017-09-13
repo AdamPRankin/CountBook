@@ -11,7 +11,7 @@ import java.util.Date;
 public class Counter {
     public int initialValue;
     public int currentValue;
-    public LocalDate lastModifyDate;
+    //public LocalDate lastModifyDate;
     public String counterName;
     public String comment;
 
@@ -19,7 +19,7 @@ public class Counter {
         this.initialValue = initalValue;
         this.currentValue = initalValue;
         this.counterName = counterName;
-        this.lastModifyDate = LocalDate.now(ZoneId.of("Canada/Mountain"));
+        //this.lastModifyDate = LocalDate.now(ZoneId.of("Canada/Mountain"));
     }
 
     public Counter(int value,String counterName, String comment){
@@ -27,7 +27,7 @@ public class Counter {
         this.currentValue = value;
         this.counterName = counterName;
         this.comment = comment;
-        this.lastModifyDate = LocalDate.now(ZoneId.of("Canada/Mountain"));
+        //this.lastModifyDate = LocalDate.now(ZoneId.of("Canada/Mountain"));
 
     }
 
@@ -51,9 +51,9 @@ public class Counter {
         return currentValue;
     }
 
-    public LocalDate getLastModifyDate(){
-        return lastModifyDate;
-    }
+    //public LocalDate getLastModifyDate(){
+    //    return lastModifyDate;
+    //}
 
     public void setCounterName(String newName){
         counterName = newName;

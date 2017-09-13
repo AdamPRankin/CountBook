@@ -1,5 +1,6 @@
 package com.example.arankin.arankin_countbook;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,10 +16,6 @@ public class AddCounterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_counter);
 
 
-        EditText txtname = (EditText)findViewById(R.id.addNameText);
-        EditText txtcomment = (EditText)findViewById(R.id.addCommentText);
-        EditText txtnumber = (EditText)findViewById(R.id.addNumbertext);
-
         Button counterButton = (Button) findViewById(R.id.newCounterButton);
         counterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,7 +28,12 @@ public class AddCounterActivity extends AppCompatActivity {
                 String value = txtnumber.getText().toString();
                 int number=Integer.parseInt(value);
 
-                Counter counter = new Counter(number,name,comment);
+                Intent returnIntent = getIntent();
+                returnIntent.putExtra("name",name);
+                returnIntent.putExtra("comment",comment);
+                returnIntent.putExtra("number",number);
+                setResult(Activity.RESULT_OK,returnIntent);
+                finish();
 
             }
         });

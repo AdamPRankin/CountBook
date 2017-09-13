@@ -9,6 +9,8 @@ import android.view.View.OnClickListener;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int NEW_COUNTER_REQUEST = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,8 +21,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent counterPage = new Intent(MainActivity.this, AddCounterActivity.class);
-                startActivity(counterPage);
+                startActivityForResult(counterPage, NEW_COUNTER_REQUEST);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == NEW_COUNTER_REQUEST && resultCode == RESULT_OK){
+            int number = data.getIntExtra("number",0);
+            String name = data.getStringExtra("name");
+            String comment = data.getStringExtra("comment");
+            Counter counter = new Counter(number,name,comment);
+
+        }
+
     }
 }
