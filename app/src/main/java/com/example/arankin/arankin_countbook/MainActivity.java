@@ -7,9 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final int NEW_COUNTER_REQUEST = 1;
+
+    ArrayList<Counter> counterList = new ArrayList<Counter>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
             int number = data.getIntExtra("number",0);
             String name = data.getStringExtra("name");
             String comment = data.getStringExtra("comment");
-            Counter counter = new Counter(number,name,comment);
+            Counter newCounter = new Counter(number,name,comment);
+            counterList.add(newCounter);
 
         }
 
