@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/buttonUp"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -22,25 +22,25 @@
             android:text="⇑"
             android:textSize="24sp"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintLeft_toRightOf="@+id/editText4"
-            app:layout_constraintRight_toLeftOf="@+id/button7"
+            app:layout_constraintLeft_toRightOf="@+id/editTextNum"
+            app:layout_constraintRight_toLeftOf="@+id/buttonDown"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/buttonDown"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="⇓"
             android:textSize="24sp"
-            app:layout_constraintLeft_toRightOf="@id/button6"
-            app:layout_constraintRight_toLeftOf="@+id/button8"
+            app:layout_constraintLeft_toRightOf="@id/buttonUp"
+            app:layout_constraintRight_toLeftOf="@+id/buttonReset"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="0dp" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/buttonReset"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -52,7 +52,7 @@
             tools:layout_editor_absoluteX="192dp" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/editTextNum"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -61,7 +61,7 @@
             android:ems="10"
             android:inputType="number"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/button6"
+            app:layout_constraintRight_toLeftOf="@id/buttonUp"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginRight="16dp" />
 

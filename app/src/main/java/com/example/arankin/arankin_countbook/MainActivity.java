@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
+    private CounterLayoutAdapter adapter;
 
     ArrayList<Counter> counterList = new ArrayList<Counter>();
 
@@ -28,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new CounterLayoutAdapter(counterList);
+        recyclerView.setAdapter(adapter);
+
 
         Button counterButton = (Button) findViewById(R.id.newCounterButton);
         counterButton.setOnClickListener(new View.OnClickListener() {
