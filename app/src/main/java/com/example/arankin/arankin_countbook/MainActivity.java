@@ -3,6 +3,8 @@ package com.example.arankin.arankin_countbook;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
@@ -13,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int NEW_COUNTER_REQUEST = 1;
 
+    private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager;
+
     ArrayList<Counter> counterList = new ArrayList<Counter>();
 
 
@@ -20,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         Button counterButton = (Button) findViewById(R.id.newCounterButton);
         counterButton.setOnClickListener(new View.OnClickListener() {

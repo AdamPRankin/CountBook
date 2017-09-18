@@ -59,6 +59,10 @@ public class Counter {
         counterName = newName;
     }
 
+    public String getCounterName() { return this.counterName; }
+
+    public String getComment() { return this.comment; }
+
     public void setComment(String newComment){
         comment = newComment;
     }
