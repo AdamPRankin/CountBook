@@ -22,15 +22,22 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Counter> counterList = new ArrayList<Counter>();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Counter testCounter = new Counter(7,"name","comment");
+        counterList.add(testCounter);
+
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         adapter = new CounterLayoutAdapter(counterList);
         recyclerView.setAdapter(adapter);
+
+
 
 
         Button counterButton = (Button) findViewById(R.id.newCounterButton);

@@ -14,7 +14,7 @@ import static com.example.arankin.arankin_countbook.R.id.buttonDown;
 
 /**
  * Created by arankin on 9/18/17.
- *
+ * read tutorial https://stackoverflow.com/questions/37786796/how-to-display-an-arraylist-in-a-recyclerview
  */
 
 public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdapter.ViewHolder> {
@@ -37,6 +37,7 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
 
         public ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
 
             comment = itemView.findViewById(R.id.textComment);
             name = itemView.findViewById(R.id.textName);
@@ -87,6 +88,8 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
     }
 
 
+
+
     @Override
     public void onBindViewHolder(CounterLayoutAdapter.ViewHolder holder, int position) {
         Counter counter = counterList.get(position);
@@ -97,7 +100,7 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
 
         holder.name.setText(name);
         holder.comment.setText(comment);
-        holder.number.setText(number);
+        holder.number.setText(Integer.toString(number));
 
     }
 
