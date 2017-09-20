@@ -14,12 +14,15 @@ import static com.example.arankin.arankin_countbook.R.id.buttonDown;
 
 /**
  * Created by arankin on 9/18/17.
- * some code borrows from recyclerview tutorial http://www.vogella.com/tutorials/AndroidRecyclerView/article.html
+ *
  */
 
 public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdapter.ViewHolder> {
     private ArrayList<Counter> counterList;
 
+    public CounterLayoutAdapter(ArrayList<Counter> counterList) {
+        this.counterList = counterList;
+    }
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -35,23 +38,23 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         public ViewHolder(View itemView) {
             super(itemView);
 
-            //comment = itemView.findViewById(R.id.);
-            // name = itemView.findViewById(R.id.);
+            comment = itemView.findViewById(R.id.textComment);
+            name = itemView.findViewById(R.id.textName);
             number = itemView.findViewById(R.id.editTextNum);
-            up = itemView.findViewById(R.id.buttonUp);
+            up = (Button) itemView.findViewById(R.id.buttonUp);
             down = itemView.findViewById(R.id.buttonDown);
             reset = itemView.findViewById(R.id.buttonReset);
             edit = itemView.findViewById(R.id.buttonEdit);
+
+            up.setOnClickListener(this);
+            down.setOnClickListener(this);
+            reset.setOnClickListener(this);
+            edit.setOnClickListener(this);
 
            // public void bindCounter(Counter counter){
 
             //number = counter.getCurrentValue();
            // }
-
-
-            ///set onclicklistender.this for each button
-
-
 
         }
 
@@ -59,31 +62,48 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         public void onClick(View view) {
 
             //// add switch for the different buttons here, and code for each
-            ///if (v.getId() == edit.getId()) then do stuff
-            ///elif if (v.getId() == reset.getId()) etc
+            if (view.getId() == edit.getId()) {
+
+            }
+            if (view.getId() == reset.getId()) {
+
+            }
+            if (view.getId() == down.getId()) {
+                //decrement number, change lasteditdate
+            }
+            if (view.getId() == up.getId()) {
+                //incement number, change lasteditdate
+            }
 
         }
     }
 
-    public CounterLayoutAdapter(ArrayList<Counter> counters) {
-        counterList = counters;
-    }
-
 
     @Override
-    public CounterLayoutAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflatedView = LayoutInflater.from(parent.getContext()).inflate(R.layout
         .row_layout, parent, false);
         return new ViewHolder(inflatedView);
     }
 
+
     @Override
     public void onBindViewHolder(CounterLayoutAdapter.ViewHolder holder, int position) {
+        Counter counter = counterList.get(position);
+
+        String comment = counter.getComment();
+        String name = counter.getCounterName();
+        int number = counter.getCurrentValue();
+
+        holder.name.setText(name);
+        holder.comment.setText(comment);
+        holder.number.setText(number);
 
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+
+        return counterList.size();
     }
 }
