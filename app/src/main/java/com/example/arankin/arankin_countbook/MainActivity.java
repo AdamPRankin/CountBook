@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -32,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private CounterLayoutAdapter adapter;
+    private TextView numCounterText;
 
     ArrayList<Counter> counterList = new ArrayList<Counter>();
+    int numCounters = counterList.size();
 
 
 
@@ -52,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         adapter = new CounterLayoutAdapter(counterList);
         recyclerView.setAdapter(adapter);
+        numCounterText = (TextView) findViewById(R.id.numCountersText);
+        numCounterText.setText(String.valueOf(numCounters));
 
 
 
@@ -64,6 +69,36 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(counterPage, NEW_COUNTER_REQUEST);
             }
         });
+
+        Button clearButton = (Button) findViewById(R.id.clearCountersButton);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                counterList.clear();
+                numCounters = counterList.size();
+                numCounterText.setText(String.valueOf(numCounters));
+                adapter = new CounterLayoutAdapter(counterList);
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                saveToFile();
+
+
+            }
+        });
+    }
+
+    protected void onStart() {
+        super.onStart();
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new CounterLayoutAdapter(counterList);
+        recyclerView.setAdapter(adapter);
+        counterList = loadFromFile();
+        numCounters = counterList.size();
+        numCounterText.setText(String.valueOf(numCounters));
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -74,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
             String comment = data.getStringExtra("comment");
             Counter newCounter = new Counter(number,name,comment);
             counterList.add(newCounter);
+            numCounters = counterList.size();
+            numCounterText.setText(String.valueOf(numCounters));
             adapter.notifyDataSetChanged();
             saveToFile();
 
@@ -81,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void loadFromFile() {
+    public ArrayList<Counter> loadFromFile() {
         try {
             FileInputStream fis = openFileInput(FILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
@@ -89,12 +126,14 @@ public class MainActivity extends AppCompatActivity {
 
             Type listType = new TypeToken<ArrayList<Counter>>() {}.getType();
             counterList = gson.fromJson(in, listType);
+            return counterList;
 
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
 
         }
+        return counterList;
     }
 
     public void saveToFile() {
