@@ -51,6 +51,10 @@ public class Counter {
         return currentValue;
     }
 
+    public int getInitialValue() { return initialValue; }
+
+    public void setInitialValue(int initialValue) {this.initialValue = initialValue;}
+
     //public LocalDate getLastModifyDate(){
     //    return lastModifyDate;
     //}

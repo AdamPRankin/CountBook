@@ -67,6 +67,9 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
 
             }
             if (view.getId() == reset.getId()) {
+                Counter counter = counterList.get(position);
+                int newNumber = counter.getInitialValue();
+                counter.setCurrentValue(newNumber);
 
             }
             if (view.getId() == down.getId()) {
