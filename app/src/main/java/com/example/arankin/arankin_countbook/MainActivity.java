@@ -1,5 +1,6 @@
 package com.example.arankin.arankin_countbook;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +10,20 @@ import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+
+import static android.provider.Telephony.Mms.Part.FILENAME;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,13 +37,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loadFromFile();
 
-        Counter testCounter = new Counter(7,"name","comment");
-        counterList.add(testCounter);
+        //Counter testCounter = new Counter(7,"name","comment");
+        //counterList.add(testCounter);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
         linearLayoutManager = new LinearLayoutManager(this);
@@ -58,8 +74,43 @@ public class MainActivity extends AppCompatActivity {
             String comment = data.getStringExtra("comment");
             Counter newCounter = new Counter(number,name,comment);
             counterList.add(newCounter);
+            adapter.notifyDataSetChanged();
+            saveToFile();
 
         }
 
+    }
+
+    public void loadFromFile() {
+        try {
+            FileInputStream fis = openFileInput(FILENAME);
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+            Gson gson = new Gson();
+
+            Type listType = new TypeToken<ArrayList<Counter>>() {}.getType();
+            counterList = gson.fromJson(in, listType);
+
+
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+
+        }
+    }
+
+    public void saveToFile() {
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME,
+                    Context.MODE_PRIVATE);
+            OutputStreamWriter writer = new OutputStreamWriter(fos);
+            Gson gson = new Gson();
+            gson.toJson(counterList,writer);
+            writer.flush();
+
+
+            fos.close();
+        }  catch (IOException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException();
+        }
     }
 }
