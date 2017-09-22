@@ -72,7 +72,7 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                counter.decrementValue();
+                counter.incrementValue();
                 notifyItemChanged(position);
 
             }
@@ -80,7 +80,7 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                counter.incrementValue();
+                counter.decrementValue();
                 notifyItemChanged(position);
 
             }

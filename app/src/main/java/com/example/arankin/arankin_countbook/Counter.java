@@ -1,7 +1,9 @@
 package com.example.arankin.arankin_countbook;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -12,6 +14,10 @@ public class Counter {
     public int initialValue;
     public int currentValue;
     //public LocalDate lastModifyDate;
+
+
+
+    public Date date;
     public String counterName;
     public String comment;
 
@@ -32,11 +38,12 @@ public class Counter {
     }
 
     public void incrementValue(){
-        currentValue--;
+        currentValue++;
     }
 
     public void decrementValue(){
-        currentValue++;
+        if (currentValue >= 1)
+            currentValue--;
     }
 
     public void setCurrentValue(int newValue){
