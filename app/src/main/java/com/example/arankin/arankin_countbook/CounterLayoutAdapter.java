@@ -38,10 +38,17 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
+            View.OnClickListener listener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            };
 
             comment = itemView.findViewById(R.id.textComment);
             name = itemView.findViewById(R.id.textName);
             number = itemView.findViewById(R.id.editTextNum);
+            /*
             up = (Button) itemView.findViewById(R.id.buttonUp);
             down = itemView.findViewById(R.id.buttonDown);
             reset = itemView.findViewById(R.id.buttonReset);
@@ -51,6 +58,7 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
             down.setOnClickListener(this);
             reset.setOnClickListener(this);
             edit.setOnClickListener(this);
+            */
 
            // public void bindCounter(Counter counter){
 
@@ -67,9 +75,9 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
 
             }
             if (view.getId() == reset.getId()) {
-                Counter counter = counterList.get(position);
-                int newNumber = counter.getInitialValue();
-                counter.setCurrentValue(newNumber);
+                //Counter counter = counterList.get(position);
+                //int newNumber = counter.getInitialValue();
+                //counter.setCurrentValue(newNumber);
 
             }
             if (view.getId() == down.getId()) {
@@ -94,12 +102,48 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
 
 
     @Override
-    public void onBindViewHolder(CounterLayoutAdapter.ViewHolder holder, int position) {
-        Counter counter = counterList.get(position);
+    public void onBindViewHolder(CounterLayoutAdapter.ViewHolder holder, final int position) {
+        final Counter counter = counterList.get(position);
 
         String comment = counter.getComment();
         String name = counter.getCounterName();
         int number = counter.getCurrentValue();
+
+        Button up = holder.itemView.findViewById(R.id.buttonUp);
+        Button down = holder.itemView.findViewById(R.id.buttonDown);
+        Button reset = holder.itemView.findViewById(R.id.buttonReset);
+        Button edit = holder.itemView.findViewById(R.id.buttonEdit);
+
+        up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                counter.decrementValue();
+                notifyItemChanged(position);
+
+            }
+        });
+        down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                counter.incrementValue();
+                notifyItemChanged(position);
+
+            }
+        });
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                counter.resetCurrentValue();
+                notifyItemChanged(position);
+
+            }
+        });
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         holder.name.setText(name);
         holder.comment.setText(comment);
