@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 import static android.R.attr.data;
 import static android.app.Activity.RESULT_OK;
+import static com.example.arankin.arankin_countbook.R.id.activity_chooser_view_content;
+import static com.example.arankin.arankin_countbook.R.id.parent;
 //import static com.example.arankin.arankin_countbook.CounterLayoutAdapter.ViewHolder.EDIT_COUNTER_REQUEST;
 
 
@@ -27,11 +29,17 @@ import static android.app.Activity.RESULT_OK;
 public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdapter.ViewHolder> {
     private ArrayList<Counter> counterList;
     public static final int EDIT_COUNTER_REQUEST = 2;
-    //private final Context context;
 
     public CounterLayoutAdapter(ArrayList<Counter> counterList) {
         this.counterList = counterList;
+
     }
+    public interface CallbackInterface{
+
+
+        void onHandleSelection(int position, String text);
+    }
+
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -110,11 +118,6 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent editCounterPage = new Intent(context, EditCounterActivity.class);
-                //context.startActivityForResult(editCounterPage, EDIT_COUNTER_REQUEST);
-
-
-
             }
         });
 

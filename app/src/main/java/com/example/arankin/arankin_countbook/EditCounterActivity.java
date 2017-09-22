@@ -48,4 +48,4 @@ public class EditCounterActivity extends AppCompatActivity {
 
         }
     }
-}
+
