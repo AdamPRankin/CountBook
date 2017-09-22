@@ -67,6 +67,7 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         Button down = holder.itemView.findViewById(R.id.buttonDown);
         Button reset = holder.itemView.findViewById(R.id.buttonReset);
         Button edit = holder.itemView.findViewById(R.id.buttonEdit);
+        Button delete = holder.itemView.findViewById(R.id.buttonDelete);
 
         up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +96,15 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                counterList.remove(position);
+                notifyDataSetChanged();
 
             }
         });
