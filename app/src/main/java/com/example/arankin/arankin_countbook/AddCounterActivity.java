@@ -38,25 +38,6 @@ public class AddCounterActivity extends AppCompatActivity {
         Button counterButton = (Button) findViewById(R.id.newCounterButton);
 
         counterButton.setOnClickListener(newCounterListener);
-        /*counterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText txtname = (EditText)findViewById(R.id.addNameText);
-                EditText txtcomment = (EditText)findViewById(R.id.addCommentText);
-                EditText txtnumber = (EditText)findViewById(R.id.addNumbertext);
-                String name = txtname.getText().toString();
-                String comment = txtcomment.getText().toString();
-                String value = txtnumber.getText().toString();
-                int number=Integer.parseInt(value);
 
-                Intent returnIntent = getIntent();
-                returnIntent.putExtra("name",name);
-                returnIntent.putExtra("comment",comment);
-                returnIntent.putExtra("number",number);
-                setResult(Activity.RESULT_OK,returnIntent);
-                finish();
-
-            }
-        });  */
     }
 }

@@ -39,16 +39,11 @@ public class MainActivity extends AppCompatActivity {
     int numCounters = counterList.size();
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadFromFile();
-
-        //Counter testCounter = new Counter(7,"name","comment");
-        //counterList.add(testCounter);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
         linearLayoutManager = new LinearLayoutManager(this);
@@ -82,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
                 saveToFile();
 
-
             }
         });
     }
@@ -113,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
             numCounterText.setText(String.valueOf(numCounters));
             adapter.notifyDataSetChanged();
             saveToFile();
-
         }
 
     }

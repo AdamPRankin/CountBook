@@ -29,65 +29,19 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         private TextView name;
         private TextView comment;
         private TextView number;
-        private Button edit;
-        private Button reset;
-        private Button up;
-        private Button down;
-
 
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            View.OnClickListener listener = new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            };
 
             comment = itemView.findViewById(R.id.textComment);
             name = itemView.findViewById(R.id.textName);
             number = itemView.findViewById(R.id.editTextNum);
-            /*
-            up = (Button) itemView.findViewById(R.id.buttonUp);
-            down = itemView.findViewById(R.id.buttonDown);
-            reset = itemView.findViewById(R.id.buttonReset);
-            edit = itemView.findViewById(R.id.buttonEdit);
-
-            up.setOnClickListener(this);
-            down.setOnClickListener(this);
-            reset.setOnClickListener(this);
-            edit.setOnClickListener(this);
-            */
-
-           // public void bindCounter(Counter counter){
-
-            //number = counter.getCurrentValue();
-           // }
 
         }
 
         @Override
-        public void onClick(View view) {
-
-            //// add switch for the different buttons here, and code for each
-            if (view.getId() == edit.getId()) {
-
-            }
-            if (view.getId() == reset.getId()) {
-                //Counter counter = counterList.get(position);
-                //int newNumber = counter.getInitialValue();
-                //counter.setCurrentValue(newNumber);
-
-            }
-            if (view.getId() == down.getId()) {
-                //decrement number, change lasteditdate
-            }
-            if (view.getId() == up.getId()) {
-                //incement number, change lasteditdate
-            }
-
-        }
+        public void onClick(View view) {}
     }
 
 
