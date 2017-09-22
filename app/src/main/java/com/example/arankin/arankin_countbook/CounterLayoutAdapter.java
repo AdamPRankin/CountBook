@@ -1,5 +1,8 @@
 package com.example.arankin.arankin_countbook;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,10 +10,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.joda.time.LocalDate;
+
 import java.util.ArrayList;
 
-import static android.R.attr.button;
-import static com.example.arankin.arankin_countbook.R.id.buttonDown;
+import static android.R.attr.data;
+import static android.app.Activity.RESULT_OK;
+//import static com.example.arankin.arankin_countbook.CounterLayoutAdapter.ViewHolder.EDIT_COUNTER_REQUEST;
+
 
 /**
  * Created by arankin on 9/18/17.
@@ -19,6 +26,8 @@ import static com.example.arankin.arankin_countbook.R.id.buttonDown;
 
 public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdapter.ViewHolder> {
     private ArrayList<Counter> counterList;
+    public static final int EDIT_COUNTER_REQUEST = 2;
+    //private final Context context;
 
     public CounterLayoutAdapter(ArrayList<Counter> counterList) {
         this.counterList = counterList;
@@ -29,6 +38,9 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         private TextView name;
         private TextView comment;
         private TextView number;
+        //private TextView date;
+
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -37,6 +49,7 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
             comment = itemView.findViewById(R.id.textComment);
             name = itemView.findViewById(R.id.textName);
             number = itemView.findViewById(R.id.editTextNum);
+            //date = itemView.findViewById(R.id.textDate);
 
         }
 
@@ -62,6 +75,7 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         String comment = counter.getComment();
         String name = counter.getCounterName();
         int number = counter.getCurrentValue();
+        //LocalDate modifyDate = counter.getLastModifyDate();
 
         Button up = holder.itemView.findViewById(R.id.buttonUp);
         Button down = holder.itemView.findViewById(R.id.buttonDown);
@@ -96,6 +110,10 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Intent editCounterPage = new Intent(context, EditCounterActivity.class);
+                //context.startActivityForResult(editCounterPage, EDIT_COUNTER_REQUEST);
+
+
 
             }
         });
@@ -112,6 +130,9 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         holder.name.setText(name);
         holder.comment.setText(comment);
         holder.number.setText(Integer.toString(number));
+        //holder.date.setText(modifyDate.toString());
+
+
 
     }
 
@@ -120,4 +141,20 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
 
         return counterList.size();
     }
+/*
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == EDIT_COUNTER_REQUEST && resultCode == RESULT_OK){
+            int currentNumber = data.getIntExtra("current_number",0);
+            int initialNumber = data.getIntExtra("initial_number",0);
+            String name = data.getStringExtra("name");
+            String comment = data.getStringExtra("comment");
+            this.counter.setInitialValue(initialNumber);
+
+        }
+
+    }
+    */
+
+
+
 }

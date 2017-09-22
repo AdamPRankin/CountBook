@@ -17,6 +17,7 @@
         android:ems="10"
         android:hint="number"
         android:inputType="number"
+        android:selectAllOnFocus="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addNameText" />
 
@@ -28,7 +29,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Name"
-        android:inputType="textPersonName"
+        android:selectAllOnFocus="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +42,6 @@
         android:ems="10"
         android:hint="comment"
         android:inputType="textPersonName"
-        android:selectAllOnFocus="false"
         android:singleLine="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addNumbertext" />
