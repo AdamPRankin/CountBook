@@ -21,6 +21,8 @@ public class EditCounterActivity extends AppCompatActivity {
                 EditText txtcomment = (EditText)findViewById(R.id.editComment);
                 EditText txtcurrentnum = (EditText)findViewById(R.id.editCurrentValue);
                 EditText txtinitialnum = (EditText)findViewById(R.id.editInitialValue);
+
+
                 String newName = txtname.getText().toString();
                 String newComment = txtcomment.getText().toString();
                 String newCurrentValueString = txtcurrentnum.getText().toString();

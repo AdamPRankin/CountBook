@@ -94,6 +94,11 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         saveToFile();
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveToFile();
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
