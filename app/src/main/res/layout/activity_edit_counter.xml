@@ -14,6 +14,8 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="name"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,6 +28,8 @@
         android:ems="10"
         android:hint="current value"
         android:inputType="number"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editName" />
 
@@ -38,6 +42,8 @@
         android:ems="10"
         android:hint="initial value"
         android:inputType="number"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editCurrentValue" />
 
@@ -49,6 +55,8 @@
         android:layout_marginTop="15dp"
         android:ems="10"
         android:hint="comment"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editInitialValue" />
 

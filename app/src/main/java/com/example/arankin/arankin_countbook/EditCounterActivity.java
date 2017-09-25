@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by arankin on 9/22/17.
@@ -24,16 +25,30 @@ public class EditCounterActivity extends AppCompatActivity {
                 String newComment = txtcomment.getText().toString();
                 String newCurrentValueString = txtcurrentnum.getText().toString();
                 String newInitialValueString = txtinitialnum.getText().toString();
-                int newCurrentValue = Integer.parseInt(newCurrentValueString);
-                int newInitialValue = Integer.parseInt(newInitialValueString);
 
-                Intent returnIntent = getIntent();
-                returnIntent.putExtra("name",newName);
-                returnIntent.putExtra("comment",newComment);
-                returnIntent.putExtra("current_number",newCurrentValue);
-                returnIntent.putExtra("initial_number",newInitialValue);
-                setResult(Activity.RESULT_OK,returnIntent);
-                finish();
+
+                if (newName.trim().length() == 0) {
+                    Toast.makeText(EditCounterActivity.this, "Please Enter a Name", Toast.LENGTH_SHORT).show();
+                }
+
+                else if (newCurrentValueString.trim().length() == 0) {
+                    Toast.makeText(EditCounterActivity.this, "Please Enter a Number", Toast.LENGTH_SHORT).show();
+                }
+                else if (newInitialValueString.trim().length() == 0) {
+                    Toast.makeText(EditCounterActivity.this, "Please Enter a Number", Toast.LENGTH_SHORT).show();
+                }
+
+                else {
+                    int newCurrentValue = Integer.parseInt(newCurrentValueString);
+                    int newInitialValue = Integer.parseInt(newInitialValueString);
+                    Intent returnIntent = getIntent();
+                    returnIntent.putExtra("name", newName);
+                    returnIntent.putExtra("comment", newComment);
+                    returnIntent.putExtra("current_number", newCurrentValue);
+                    returnIntent.putExtra("initial_number", newInitialValue);
+                    setResult(Activity.RESULT_OK, returnIntent);
+                    finish();
+                }
 
             }
         };

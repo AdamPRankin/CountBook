@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddCounterActivity extends AppCompatActivity {
 
@@ -18,14 +19,24 @@ public class AddCounterActivity extends AppCompatActivity {
             String name = txtname.getText().toString();
             String comment = txtcomment.getText().toString();
             String value = txtnumber.getText().toString();
-            int number=Integer.parseInt(value);
 
-            Intent returnIntent = getIntent();
-            returnIntent.putExtra("name",name);
-            returnIntent.putExtra("comment",comment);
-            returnIntent.putExtra("number",number);
-            setResult(Activity.RESULT_OK,returnIntent);
-            finish();
+            if (name.trim().length() == 0) {
+                Toast.makeText(AddCounterActivity.this, "Please Enter a Name", Toast.LENGTH_SHORT).show();
+            }
+
+            else if (value.trim().length() == 0) {
+                Toast.makeText(AddCounterActivity.this, "Please Enter a Number", Toast.LENGTH_SHORT).show();
+            }
+
+            else {
+                int number=Integer.parseInt(value);
+                Intent returnIntent = getIntent();
+                returnIntent.putExtra("name", name);
+                returnIntent.putExtra("comment", comment);
+                returnIntent.putExtra("number", number);
+                setResult(Activity.RESULT_OK, returnIntent);
+                finish();
+            }
 
         }
     };

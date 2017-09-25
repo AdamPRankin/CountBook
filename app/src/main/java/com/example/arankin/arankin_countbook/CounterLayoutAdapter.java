@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import static android.R.attr.data;
 import static android.app.Activity.RESULT_OK;
+import static android.support.v7.appcompat.R.id.up;
 import static com.example.arankin.arankin_countbook.R.id.activity_chooser_view_content;
 import static com.example.arankin.arankin_countbook.R.id.parent;
 //import static com.example.arankin.arankin_countbook.CounterLayoutAdapter.ViewHolder.EDIT_COUNTER_REQUEST;
@@ -29,9 +30,15 @@ import static com.example.arankin.arankin_countbook.R.id.parent;
 public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdapter.ViewHolder> {
     private ArrayList<Counter> counterList;
     public static final int EDIT_COUNTER_REQUEST = 2;
+    public Context mcontext;
 
-    public CounterLayoutAdapter(ArrayList<Counter> counterList) {
+
+
+
+    public CounterLayoutAdapter(ArrayList<Counter> counterList, Context context) {
         this.counterList = counterList;
+        this.mcontext = context;
+
 
     }
     public interface CallbackInterface{
@@ -46,7 +53,16 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         private TextView name;
         private TextView comment;
         private TextView number;
-        //private TextView date;
+        private TextView date;
+
+
+
+
+
+
+
+
+
 
 
 
@@ -56,8 +72,8 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
 
             comment = itemView.findViewById(R.id.textComment);
             name = itemView.findViewById(R.id.textName);
-            number = itemView.findViewById(R.id.editTextNum);
-            //date = itemView.findViewById(R.id.textDate);
+            number = itemView.findViewById(R.id.textNum);
+            date = itemView.findViewById(R.id.textDate);
 
         }
 
@@ -82,14 +98,16 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
 
         String comment = counter.getComment();
         String name = counter.getCounterName();
+        String date = counter.getDate();
         int number = counter.getCurrentValue();
-        //LocalDate modifyDate = counter.getLastModifyDate();
 
         Button up = holder.itemView.findViewById(R.id.buttonUp);
         Button down = holder.itemView.findViewById(R.id.buttonDown);
         Button reset = holder.itemView.findViewById(R.id.buttonReset);
         Button edit = holder.itemView.findViewById(R.id.buttonEdit);
         Button delete = holder.itemView.findViewById(R.id.buttonDelete);
+
+
 
         up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +136,9 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(mcontext,EditCounterActivity.class);
+                intent.putExtra("position",position);
+                ((Activity)mcontext).startActivityForResult(intent,EDIT_COUNTER_REQUEST);
             }
         });
 
@@ -133,7 +154,7 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         holder.name.setText(name);
         holder.comment.setText(comment);
         holder.number.setText(Integer.toString(number));
-        //holder.date.setText(modifyDate.toString());
+        holder.date.setText(date);
 
 
 
@@ -144,20 +165,9 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
 
         return counterList.size();
     }
-/*
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == EDIT_COUNTER_REQUEST && resultCode == RESULT_OK){
-            int currentNumber = data.getIntExtra("current_number",0);
-            int initialNumber = data.getIntExtra("initial_number",0);
-            String name = data.getStringExtra("name");
-            String comment = data.getStringExtra("comment");
-            this.counter.setInitialValue(initialNumber);
 
-        }
-
+    public void onDataReady(Counter counter, int position){
+        notifyItemChanged(position);
     }
-    */
-
-
 
 }

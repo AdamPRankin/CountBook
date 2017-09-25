@@ -2,6 +2,7 @@ package com.example.arankin.arankin_countbook;
 
 import org.joda.time.LocalDate;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -13,9 +14,7 @@ import java.util.Date;
 public class Counter {
     public int initialValue;
     public int currentValue;
-    //public org.joda.time.LocalDate lastModifyDate;
-
-    public Date date;
+    public String date;
     public String counterName;
     public String comment;
 
@@ -23,7 +22,9 @@ public class Counter {
         this.initialValue = initalValue;
         this.currentValue = initalValue;
         this.counterName = counterName;
-        //this.lastModifyDate = new org.joda.time.LocalDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(new Date());
+        this.date = date;
     }
 
     public Counter(int value,String counterName, String comment){
@@ -31,29 +32,31 @@ public class Counter {
         this.currentValue = value;
         this.counterName = counterName;
         this.comment = comment;
-        //this.lastModifyDate = new org.joda.time.LocalDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(new Date());
+        this.date = date;
 
     }
 
     public void incrementValue(){
         currentValue++;
-        //this.lastModifyDate = new org.joda.time.LocalDate();
+        setDate();
     }
 
     public void decrementValue(){
         if (currentValue >= 1)
             currentValue--;
-        //this.lastModifyDate = new org.joda.time.LocalDate();
+        setDate();
     }
 
     public void setCurrentValue(int newValue){
         currentValue = newValue;
-        //this.lastModifyDate = new org.joda.time.LocalDate();
+        setDate();
     }
 
     public void resetCurrentValue(){
         currentValue = initialValue;
-        //this.lastModifyDate = new org.joda.time.LocalDate();
+        setDate();
     }
 
     public int getCurrentValue(){
@@ -64,12 +67,19 @@ public class Counter {
 
     public void setInitialValue(int initialValue) {
         this.initialValue = initialValue;
-        //this.lastModifyDate = new org.joda.time.LocalDate();
+        setDate();
     }
 
-    //public LocalDate getLastModifyDate(){
-      //  return lastModifyDate;
-    //}
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(new Date());
+        this.date = date;
+
+    }
 
     public void setCounterName(String newName){
         counterName = newName;
@@ -82,6 +92,7 @@ public class Counter {
     public void setComment(String newComment){
         comment = newComment;
     }
+
 
 
 
