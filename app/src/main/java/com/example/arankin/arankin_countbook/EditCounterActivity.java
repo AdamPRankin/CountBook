@@ -32,10 +32,10 @@ public class EditCounterActivity extends AppCompatActivity {
                 }
 
                 else if (newCurrentValueString.trim().length() == 0) {
-                    Toast.makeText(EditCounterActivity.this, "Please Enter a Number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditCounterActivity.this, "Please Enter a Current Value", Toast.LENGTH_SHORT).show();
                 }
                 else if (newInitialValueString.trim().length() == 0) {
-                    Toast.makeText(EditCounterActivity.this, "Please Enter a Number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditCounterActivity.this, "Please Enter an Inital Value", Toast.LENGTH_SHORT).show();
                 }
 
                 else {
