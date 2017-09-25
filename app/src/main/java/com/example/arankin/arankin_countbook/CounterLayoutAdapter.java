@@ -138,6 +138,10 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
             public void onClick(View view) {
                 Intent intent = new Intent(mcontext,EditCounterActivity.class);
                 intent.putExtra("position",position);
+                intent.putExtra("s_name",counter.getCounterName());
+                intent.putExtra("s_comment",counter.getComment());
+                intent.putExtra("s_init_value",counter.getInitialValue());
+                intent.putExtra("s_curr_value",counter.getCurrentValue());
                 ((Activity)mcontext).startActivityForResult(intent,EDIT_COUNTER_REQUEST);
             }
         });

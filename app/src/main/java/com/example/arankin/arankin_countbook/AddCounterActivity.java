@@ -9,10 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import static android.R.attr.data;
+
 public class AddCounterActivity extends AppCompatActivity {
 
     private View.OnClickListener newCounterListener = new View.OnClickListener() {
         public void onClick(View v) {
+
             EditText txtname = (EditText)findViewById(R.id.addNameText);
             EditText txtcomment = (EditText)findViewById(R.id.addCommentText);
             EditText txtnumber = (EditText)findViewById(R.id.addNumbertext);
