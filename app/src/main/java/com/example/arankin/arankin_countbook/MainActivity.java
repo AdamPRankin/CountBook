@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadFromFile();
+        counterList = loadFromFile();
+
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
         linearLayoutManager = new LinearLayoutManager(this);
@@ -88,10 +89,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         adapter = new CounterLayoutAdapter(counterList, this);
         recyclerView.setAdapter(adapter);
-        counterList = loadFromFile();
         numCounters = counterList.size();
         numCounterText.setText(String.valueOf(numCounters));
         adapter.notifyDataSetChanged();
+        saveToFile();
     }
 
     @Override
