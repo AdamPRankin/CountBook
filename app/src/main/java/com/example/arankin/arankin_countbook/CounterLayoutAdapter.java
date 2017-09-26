@@ -31,13 +31,15 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
     private ArrayList<Counter> counterList;
     public static final int EDIT_COUNTER_REQUEST = 2;
     public Context mcontext;
+    public ItemDeleteListener deleteListener;
 
 
 
 
-    public CounterLayoutAdapter(ArrayList<Counter> counterList, Context context) {
+    public CounterLayoutAdapter(ArrayList<Counter> counterList, Context context, ItemDeleteListener deleteListener) {
         this.counterList = counterList;
         this.mcontext = context;
+        this.deleteListener = deleteListener;
 
 
     }
@@ -150,6 +152,7 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
             @Override
             public void onClick(View view) {
                 counterList.remove(position);
+                deleteListener.onItemDeleted();
                 notifyDataSetChanged();
 
             }

@@ -44,13 +44,22 @@ public class AddCounterActivity extends AppCompatActivity {
         }
     };
 
+    private View.OnClickListener cancelListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent cancelIntent = new Intent();
+            setResult(RESULT_CANCELED, cancelIntent);
+            finish();
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_counter);
         Button counterButton = (Button) findViewById(R.id.newCounterButton);
-
+        Button cancelButton = (Button) findViewById(R.id.buttonCancelAdd);
+        cancelButton.setOnClickListener(cancelListener);
         counterButton.setOnClickListener(newCounterListener);
 
     }

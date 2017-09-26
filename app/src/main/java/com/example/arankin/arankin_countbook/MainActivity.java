@@ -2,6 +2,7 @@ package com.example.arankin.arankin_countbook;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import static android.provider.Telephony.Mms.Part.FILENAME;
 import static com.example.arankin.arankin_countbook.R.id.parent;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ItemDeleteListener{
 
     public static final int NEW_COUNTER_REQUEST = 1;
     public static final int EDIT_COUNTER_REQUEST = 2;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private CounterLayoutAdapter adapter;
     private TextView numCounterText;
+    private Handler handler = new Handler();
 
     ArrayList<Counter> counterList = new ArrayList<Counter>();
     int numCounters = counterList.size();
@@ -49,10 +51,14 @@ public class MainActivity extends AppCompatActivity {
         counterList = loadFromFile();
 
 
+
+
+
+
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new CounterLayoutAdapter(counterList, this);
+        adapter = new CounterLayoutAdapter(counterList, this,this);
         recyclerView.setAdapter(adapter);
         numCounterText = (TextView) findViewById(R.id.numCountersText);
         numCounterText.setText(String.valueOf(numCounters));
@@ -87,12 +93,22 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new CounterLayoutAdapter(counterList, this);
+        adapter = new CounterLayoutAdapter(counterList, this,this);
         recyclerView.setAdapter(adapter);
         numCounters = counterList.size();
         numCounterText.setText(String.valueOf(numCounters));
         adapter.notifyDataSetChanged();
         saveToFile();
+
+        Runnable runnable = new Runnable() {
+            @Override public void run() {
+                updateCountersNumber();
+                handler.postDelayed(this,1000);
+            }
+
+
+        };
+        handler.postDelayed(runnable,100);
     }
     @Override
     protected void onPause() {
@@ -102,6 +118,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode ==RESULT_CANCELED) {}
+
         if (requestCode == NEW_COUNTER_REQUEST && resultCode == RESULT_OK){
             int number = data.getIntExtra("number",0);
             String name = data.getStringExtra("name");
@@ -170,11 +189,20 @@ public class MainActivity extends AppCompatActivity {
     public void updateCountersNumber(){
         numCounters = counterList.size();
         numCounterText.setText(String.valueOf(numCounters));
-        adapter = new CounterLayoutAdapter(counterList, getBaseContext());
+        adapter = new CounterLayoutAdapter(counterList, getBaseContext(),this);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         saveToFile();
     }
+
+    public void onItemDeleted(){
+        updateCountersNumber();
+
+    }
+
+
+
+
 
 
 }

@@ -55,6 +55,18 @@ public class EditCounterActivity extends AppCompatActivity {
             }
         };
 
+        private View.OnClickListener cancelListener = new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent cancelIntent = new Intent();
+                setResult(RESULT_CANCELED, cancelIntent);
+                finish();
+            }
+        };
+
+
+
+
+
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +74,9 @@ public class EditCounterActivity extends AppCompatActivity {
             setContentView(R.layout.activity_edit_counter);
             Button editCounterButton = (Button) findViewById(R.id.editCounterButton);
             editCounterButton.setOnClickListener(newCounterListener);
+
+            Button cancelButton = (Button) findViewById(R.id.buttonCancelEdit);
+            cancelButton.setOnClickListener(cancelListener);
 
         }
     }
