@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -26,7 +25,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import static android.provider.Telephony.Mms.Part.FILENAME;
-import static com.example.arankin.arankin_countbook.R.id.parent;
+
 
 public class MainActivity extends AppCompatActivity implements ItemDeleteListener{
 

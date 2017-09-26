@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import static android.R.attr.data;
-
 public class AddCounterActivity extends AppCompatActivity {
 
     private View.OnClickListener newCounterListener = new View.OnClickListener() {

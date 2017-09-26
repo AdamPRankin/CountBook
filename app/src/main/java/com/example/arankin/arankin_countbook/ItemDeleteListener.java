@@ -6,5 +6,5 @@ package com.example.arankin.arankin_countbook;
 
 public interface ItemDeleteListener {
 
-    public void onItemDeleted();
+    void onItemDeleted();
 }

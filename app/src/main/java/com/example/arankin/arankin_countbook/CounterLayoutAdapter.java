@@ -9,17 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
-import org.joda.time.LocalDate;
-
 import java.util.ArrayList;
 
-import static android.R.attr.data;
-import static android.app.Activity.RESULT_OK;
-import static android.support.v7.appcompat.R.id.up;
-import static com.example.arankin.arankin_countbook.R.id.activity_chooser_view_content;
-import static com.example.arankin.arankin_countbook.R.id.parent;
-//import static com.example.arankin.arankin_countbook.CounterLayoutAdapter.ViewHolder.EDIT_COUNTER_REQUEST;
 
 
 /**
@@ -50,22 +41,11 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
     }
 
 
-
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView name;
         private TextView comment;
         private TextView number;
         private TextView date;
-
-
-
-
-
-
-
-
-
-
 
 
         public ViewHolder(View itemView) {
@@ -90,7 +70,6 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         .row_layout, parent, false);
         return new ViewHolder(inflatedView);
     }
-
 
 
 
@@ -162,7 +141,6 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         holder.comment.setText(comment);
         holder.number.setText(Integer.toString(number));
         holder.date.setText(date);
-
 
 
     }
