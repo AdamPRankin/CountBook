@@ -38,6 +38,7 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         private TextView comment;
         private TextView number;
         private TextView date;
+        private TextView initial;
 
 
         public ViewHolder(View itemView) {
@@ -48,6 +49,7 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
             name = itemView.findViewById(R.id.textName);
             number = itemView.findViewById(R.id.textNum);
             date = itemView.findViewById(R.id.textDate);
+            initial = itemView.findViewById(R.id.textInitialValue);
 
         }
 
@@ -70,6 +72,7 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         String comment = counter.getComment();
         String name = counter.getCounterName();
         String date = counter.getDate();
+        int initialValue = counter.getInitialValue();
         int number = counter.getCurrentValue();
 
         Button up = holder.itemView.findViewById(R.id.buttonUp);
@@ -131,6 +134,7 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         holder.comment.setText(comment);
         holder.number.setText(Integer.toString(number));
         holder.date.setText(date);
+        holder.initial.setText(Integer.toString(initialValue));
 
     }
 
