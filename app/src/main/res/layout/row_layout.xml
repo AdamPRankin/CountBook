@@ -107,6 +107,7 @@
         android:ems="10"
         android:inputType="number"
         android:selectAllOnFocus="true"
+        android:textStyle="bold"
         app:layout_constraintWidth_max="50dp" />/>
 
     <Button

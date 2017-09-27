@@ -12,16 +12,18 @@ import android.widget.Toast;
 /**
  * Created by arankin on 9/22/17.
  */
-// TODO prepopulate edit fields with existing data
+
 public class EditCounterActivity extends AppCompatActivity {
 
+
         private View.OnClickListener newCounterListener = new View.OnClickListener() {
+
             public void onClick(View v) {
+
                 EditText txtname = (EditText)findViewById(R.id.editName);
                 EditText txtcomment = (EditText)findViewById(R.id.editComment);
                 EditText txtcurrentnum = (EditText)findViewById(R.id.editCurrentValue);
                 EditText txtinitialnum = (EditText)findViewById(R.id.editInitialValue);
-
 
                 String newName = txtname.getText().toString();
                 String newComment = txtcomment.getText().toString();
@@ -81,6 +83,23 @@ public class EditCounterActivity extends AppCompatActivity {
 
             Button cancelButton = (Button) findViewById(R.id.buttonCancelEdit);
             cancelButton.setOnClickListener(cancelListener);
+
+            EditText txtname = (EditText)findViewById(R.id.editName);
+            EditText txtcomment = (EditText)findViewById(R.id.editComment);
+            EditText txtcurrentnum = (EditText)findViewById(R.id.editCurrentValue);
+            EditText txtinitialnum = (EditText)findViewById(R.id.editInitialValue);
+
+            //prepopulate text fields with current values
+            String name = getIntent().getExtras().getString("s_name");
+            String comment = getIntent().getExtras().getString("s_comment");
+            int current = getIntent().getExtras().getInt("s_curr_value");
+            int initial = getIntent().getExtras().getInt("s_init_value");
+            txtname.setText(name);
+            txtcomment.setText(comment);
+            txtcurrentnum.setText(String.valueOf(current));
+            txtinitialnum.setText(String.valueOf(initial));
+
+
 
         }
     }
