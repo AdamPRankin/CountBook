@@ -44,25 +44,28 @@
         android:id="@+id/numCountersText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:text="error"
-        app:layout_constraintLeft_toRightOf="@+id/newCounterButton"
-        app:layout_constraintRight_toLeftOf="@+id/clearCountersButton"
+        android:text="0"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.759"
-        android:layout_marginBottom="16dp" />
+        app:layout_constraintHorizontal_bias="0.99"
+        app:layout_constraintLeft_toRightOf="@+id/newCounterButton"
+        app:layout_constraintRight_toLeftOf="@+id/clearCountersButton" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginLeft="0dp"
         android:layout_marginRight="8dp"
         android:text="Counters:"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/newCounterButton"
-        app:layout_constraintRight_toLeftOf="@+id/numCountersText" />
+        app:layout_constraintRight_toLeftOf="@+id/numCountersText"
+        app:layout_constraintHorizontal_bias="0.642" />
 
 </android.support.constraint.ConstraintLayout>

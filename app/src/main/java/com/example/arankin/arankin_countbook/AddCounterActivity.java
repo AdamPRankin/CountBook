@@ -25,6 +25,18 @@ public class AddCounterActivity extends AppCompatActivity {
                 Toast.makeText(AddCounterActivity.this, "Please Enter a Name", Toast.LENGTH_SHORT).show();
             }
 
+            else if (name.length() >= 15) {
+                Toast.makeText(AddCounterActivity.this, "That name is too long", Toast.LENGTH_SHORT).show();
+            }
+
+            else if (value.length() >= 10) {
+                Toast.makeText(AddCounterActivity.this, "That number is too large", Toast.LENGTH_SHORT).show();
+            }
+
+            else if (comment.length() >= 20) {
+                Toast.makeText(AddCounterActivity.this, "That comment is too long", Toast.LENGTH_SHORT).show();
+            }
+
             else if (value.trim().length() == 0) {
                 Toast.makeText(AddCounterActivity.this, "Please Enter a Number", Toast.LENGTH_SHORT).show();
             }

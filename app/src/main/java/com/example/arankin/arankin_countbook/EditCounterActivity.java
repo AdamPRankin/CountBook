@@ -33,6 +33,14 @@ public class EditCounterActivity extends AppCompatActivity {
                     Toast.makeText(EditCounterActivity.this, "Please Enter a Name", Toast.LENGTH_SHORT).show();
                 }
 
+                else if (newName.length() >= 15) {
+                    Toast.makeText(EditCounterActivity.this, "That name is too long", Toast.LENGTH_SHORT).show();
+                }
+
+                else if (newComment.length() >= 20) {
+                    Toast.makeText(EditCounterActivity.this, "That comment is too long", Toast.LENGTH_SHORT).show();
+                }
+
                 else if (newCurrentValueString.trim().length() == 0) {
                     Toast.makeText(EditCounterActivity.this, "Please Enter a Current Value", Toast.LENGTH_SHORT).show();
                 }
