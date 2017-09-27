@@ -25,21 +25,13 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
     public ItemDeleteListener deleteListener;
 
 
-
-
-    public CounterLayoutAdapter(ArrayList<Counter> counterList, Context context, ItemDeleteListener deleteListener) {
+    public CounterLayoutAdapter(ArrayList<Counter> counterList, Context context ,ItemDeleteListener deleteListener) {
         this.counterList = counterList;
         this.mcontext = context;
         this.deleteListener = deleteListener;
 
 
     }
-    public interface CallbackInterface{
-
-
-        void onHandleSelection(int position, String text);
-    }
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView name;
@@ -63,14 +55,12 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         public void onClick(View view) {}
     }
 
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflatedView = LayoutInflater.from(parent.getContext()).inflate(R.layout
         .row_layout, parent, false);
         return new ViewHolder(inflatedView);
     }
-
 
 
     @Override
@@ -118,11 +108,11 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mcontext,EditCounterActivity.class);
-                intent.putExtra("position",position);
-                intent.putExtra("s_name",counter.getCounterName());
-                intent.putExtra("s_comment",counter.getComment());
-                intent.putExtra("s_init_value",counter.getInitialValue());
-                intent.putExtra("s_curr_value",counter.getCurrentValue());
+                //intent.putExtra("position",position);
+                //intent.putExtra("s_name",counter.getCounterName());
+                //intent.putExtra("s_comment",counter.getComment());
+                //intent.putExtra("s_init_value",counter.getInitialValue());
+                //intent.putExtra("s_curr_value",counter.getCurrentValue());
                 ((Activity)mcontext).startActivityForResult(intent,EDIT_COUNTER_REQUEST);
             }
         });
@@ -141,7 +131,6 @@ public class CounterLayoutAdapter extends RecyclerView.Adapter<CounterLayoutAdap
         holder.comment.setText(comment);
         holder.number.setText(Integer.toString(number));
         holder.date.setText(date);
-
 
     }
 

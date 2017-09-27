@@ -36,11 +36,9 @@ public class MainActivity extends AppCompatActivity implements ItemDeleteListene
     private LinearLayoutManager linearLayoutManager;
     private CounterLayoutAdapter adapter;
     private TextView numCounterText;
-    private Handler handler = new Handler();
 
     ArrayList<Counter> counterList = new ArrayList<Counter>();
     int numCounters = counterList.size();
-
 
 
     @Override
@@ -49,11 +47,6 @@ public class MainActivity extends AppCompatActivity implements ItemDeleteListene
         setContentView(R.layout.activity_main);
         counterList = loadFromFile();
 
-
-
-
-
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -61,9 +54,6 @@ public class MainActivity extends AppCompatActivity implements ItemDeleteListene
         recyclerView.setAdapter(adapter);
         numCounterText = (TextView) findViewById(R.id.numCountersText);
         numCounterText.setText(String.valueOf(numCounters));
-
-
-
 
         Button counterButton = (Button) findViewById(R.id.newCounterButton);
         counterButton.setOnClickListener(new View.OnClickListener() {
@@ -99,15 +89,6 @@ public class MainActivity extends AppCompatActivity implements ItemDeleteListene
         adapter.notifyDataSetChanged();
         saveToFile();
 
-        Runnable runnable = new Runnable() {
-            @Override public void run() {
-                updateCountersNumber();
-                handler.postDelayed(this,1000);
-            }
-
-
-        };
-        handler.postDelayed(runnable,100);
     }
     @Override
     protected void onPause() {
@@ -149,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements ItemDeleteListene
         }
 
     }
-
+    // TODO move load an save functionality into own class
     public ArrayList<Counter> loadFromFile() {
         try {
             FileInputStream fis = openFileInput(FILENAME);
@@ -185,10 +166,14 @@ public class MainActivity extends AppCompatActivity implements ItemDeleteListene
         }
     }
 
+    /**
+     * updates the number of counters that is displayed in the main activity.
+     */
+    // TODO maybe move this out of mainactivity
     public void updateCountersNumber(){
         numCounters = counterList.size();
         numCounterText.setText(String.valueOf(numCounters));
-        adapter = new CounterLayoutAdapter(counterList, getBaseContext(),this);
+        adapter = new CounterLayoutAdapter(counterList, this,this);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         saveToFile();
@@ -196,7 +181,6 @@ public class MainActivity extends AppCompatActivity implements ItemDeleteListene
 
     public void onItemDeleted(){
         updateCountersNumber();
-
     }
 
 

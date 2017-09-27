@@ -12,7 +12,7 @@ import android.widget.Toast;
 /**
  * Created by arankin on 9/22/17.
  */
-
+// TODO prepopulate edit fields with existing data
 public class EditCounterActivity extends AppCompatActivity {
 
         private View.OnClickListener newCounterListener = new View.OnClickListener() {
