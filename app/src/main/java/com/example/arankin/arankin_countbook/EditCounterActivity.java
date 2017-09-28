@@ -1,3 +1,13 @@
+/*
+ * Copyright 2017, Adam Rankin
+ *
+ * This software is released under the terms of the
+ * GNU GPL license. See http://www.gnu.org/licenses/gpl.html
+ * for more information.
+ *
+ *
+ */
+
 package com.example.arankin.arankin_countbook;
 
 import android.app.Activity;
