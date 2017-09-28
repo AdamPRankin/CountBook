@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements ItemDeleteListene
         }
 
     }
-    // TODO move load an save functionality into own class
+    // TODO maybe move load an save functionality into own class
     public ArrayList<Counter> loadFromFile() {
         try {
             FileInputStream fis = openFileInput(FILENAME);
